@@ -1,1 +1,5 @@
-# upland_mobile_commons_rest
+# Upland Mobile Commons Ruby Gem
+
+A ruby gem for interacting with the Upland Mobile Commons API. 
+
+
