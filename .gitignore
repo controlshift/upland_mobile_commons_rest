@@ -50,3 +50,6 @@ pkg
 
 # intellij
 .idea
+
+.rspec_status
+.env

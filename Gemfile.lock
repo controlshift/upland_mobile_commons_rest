@@ -12,8 +12,11 @@ GEM
     builder (3.2.4)
     byebug (11.1.3)
     concurrent-ruby (1.1.6)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    diff-lcs (1.3)
     docile (1.3.2)
     dotenv (2.7.5)
     faraday (0.17.3)
@@ -28,6 +31,7 @@ GEM
       faraday (~> 0.8)
       hashie (~> 3.5, >= 3.5.2)
       oauth2 (~> 1.0)
+    hashdiff (1.0.1)
     hashie (3.6.0)
     highline (2.0.3)
     i18n (1.8.3)
@@ -72,6 +76,19 @@ GEM
     rdoc (6.2.1)
     regexp_parser (1.7.0)
     rexml (3.2.4)
+    rspec (3.9.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+    rspec-core (3.9.2)
+      rspec-support (~> 3.9.3)
+    rspec-expectations (3.9.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-mocks (3.9.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-support (3.9.3)
     rubocop (0.85.0)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
@@ -84,6 +101,7 @@ GEM
     rubocop-ast (0.0.3)
       parser (>= 2.7.0.1)
     ruby-progressbar (1.10.1)
+    safe_yaml (1.0.5)
     semver2 (3.4.2)
     shoulda (3.6.0)
       shoulda-context (~> 1.0, >= 1.0.1)
@@ -104,6 +122,10 @@ GEM
       faraday (>= 0.9.2)
       faraday_middleware (~> 0.12, >= 0.12.2)
       hashie (~> 3.5, >= 3.5.7)
+    webmock (3.8.3)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
   ruby
@@ -114,10 +136,12 @@ DEPENDENCIES
   dotenv
   juwelier (> 2.1.0)
   rdoc (> 3.12)
+  rspec
   rubocop
   shoulda
   simplecov
   vertebrae
+  webmock
 
 BUNDLED WITH
    2.1.4
