@@ -1,5 +1,7 @@
-require "bundler/setup"
-require "upland_mobile_commons_rest"
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'upland_mobile_commons_rest'
 require 'webmock/rspec'
 
 # Require everything in the `support` directory

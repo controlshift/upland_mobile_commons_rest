@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UplandMobileCommonsRest
   class Client < Vertebrae::API
     attr_accessor :username, :password
