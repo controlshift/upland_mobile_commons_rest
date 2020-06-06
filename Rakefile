@@ -1,4 +1,5 @@
 # encoding: utf-8
+# frozen_string_literal: true
 
 require 'rubygems'
 require 'bundler'
@@ -24,12 +25,6 @@ Juwelier::Tasks.new do |gem|
   # dependencies defined in Gemfile
 end
 Juwelier::RubygemsDotOrgTasks.new
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
 
 desc "Code coverage detail"
 task :simplecov do
@@ -37,7 +32,14 @@ task :simplecov do
   Rake::Task['test'].execute
 end
 
-task :default => :test
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
+rescue LoadError
+end
+
+
+task :default => :spec
 
 require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
