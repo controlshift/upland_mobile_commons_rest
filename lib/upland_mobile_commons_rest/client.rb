@@ -43,5 +43,9 @@ module UplandMobileCommonsRest
     def campaigns
       @_campaigns ||= UplandMobileCommonsRest::Campaigns.new(client: self)
     end
+
+    def groups
+      @_groups ||= UplandMobileCommonsRest::Groups.new(client: self)
+    end
   end
 end

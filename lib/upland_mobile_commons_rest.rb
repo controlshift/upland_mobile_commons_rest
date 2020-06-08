@@ -15,3 +15,4 @@ end
 require 'upland_mobile_commons_rest/client'
 require 'upland_mobile_commons_rest/base'
 require 'upland_mobile_commons_rest/campaigns'
+require 'upland_mobile_commons_rest/groups'

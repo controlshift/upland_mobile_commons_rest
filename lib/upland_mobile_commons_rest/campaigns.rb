@@ -1,5 +1,5 @@
 module UplandMobileCommonsRest
-  class Campaigns < Vertebrae::Model
+  class Campaigns < Base
 
     def base_path
       'campaigns'

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response success="true">
+  <groups>
+    <group id="14" type="FilteredGroup" status="active">
+      <name>Group One</name>
+      <size>2</size>
+    </group>
+    <group id="91" type="UploadedGroup" status="active">
+      <name>Group Two</name>
+      <size>1</size>
+    </group>
+  </groups>
+</response>
