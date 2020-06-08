@@ -53,3 +53,4 @@ pkg
 
 .rspec_status
 .env
+.byebug_history
