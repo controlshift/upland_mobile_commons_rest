@@ -7,6 +7,13 @@ A ruby gem for interacting with the Upland Mobile Commons API.
 
 ```ruby
 client = UplandMobileCommonsRest.new(username: 'user', password: 'password')
+# List Campaigns
 client.campaigns.list
+
+# create a group
+client.groups.create('Chocolate Lovers')
+
+# create/update a profile
+client.profiles.update(phone_number: '123-456-7890')
 ```
 

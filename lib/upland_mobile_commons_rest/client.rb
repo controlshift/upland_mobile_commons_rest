@@ -16,7 +16,7 @@ module UplandMobileCommonsRest
         host: 'secure.mcommons.com',
         prefix: '/api',
         user_agent: 'ruby: UplandMobileCommonsRest',
-        content_type: 'application/xml',
+        content_type: 'application/x-www-form-urlencoded',
         additional_headers: {
           'Accept' => 'application/xml'
         }
@@ -38,6 +38,10 @@ module UplandMobileCommonsRest
       end
     end
 
+    def extract_data_from_params(params) # :nodoc:
+      URI.encode_www_form(params)
+    end
+
     ## Helper functions to let consumers do things like `client.campaigns.list`
 
     def campaigns
@@ -46,6 +50,10 @@ module UplandMobileCommonsRest
 
     def groups
       @_groups ||= UplandMobileCommonsRest::Groups.new(client: self)
+    end
+
+    def profiles
+      @_profiles ||= UplandMobileCommonsRest::Profiles.new(client: self)
     end
   end
 end
