@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response success="true">
+  <campaigns>
+    <campaign id="303" active="false">
+      <name>Campaign One</name>
+      <description></description>
+      <tags>
+        <tag>Tag Name Here</tag>
+      </tags>
+      <opt_in_paths>
+      <opt_in_path id="175057" active = "true">
+        <name>My Opt-In Path</name>
+        <tags>
+          <tag>OIP ABC</tag>
+        </tags>
+      </opt_in_path>
+      </opt_in_paths>
+    </campaign>
+    <campaign id="304" active="false">
+      <name>Huge Campaign</name>
+      <description></description>
+      <tags>
+        <tag>Tag Name Here</tag>
+      </tags>
+    </campaign>
+    <campaign id="305" active="true">
+      <name>Another Campaign</name>
+      <description>Campaign to end all campaigns</description>
+      <tags>
+        <tag>Tag Name Here</tag>
+      </tags>
+    </campaign>
+  </campaigns>
+</response>

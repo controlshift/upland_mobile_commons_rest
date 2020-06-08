@@ -3,4 +3,10 @@
 
 A ruby gem for interacting with the Upland Mobile Commons API. 
 
+## Usage
+
+```ruby
+client = UplandMobileCommonsRest.new(username: 'user', password: 'password')
+client.campaigns.list
+```
 
