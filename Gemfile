@@ -11,7 +11,7 @@ group :development do
   gem "shoulda", ">= 0"
   gem "rdoc", "> 3.12"
   gem "bundler", "> 2.0"
-  gem "juwelier", "> 2.1.0"
+  gem "juwelier", git: 'https://github.com/flajann2/juwelier.git'
   gem "simplecov", ">= 0"
   gem "dotenv"
   gem "byebug"
