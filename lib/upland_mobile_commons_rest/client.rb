@@ -31,6 +31,7 @@ module UplandMobileCommonsRest
           builder.use Faraday::Request::BasicAuthentication, connection.configuration.username, connection.configuration.password
         end
 
+        builder.use UplandMobileCommonsRest::TypedErrorMiddleware
         builder.use Faraday::Response::Logger if ENV['DEBUG']
         builder.use FaradayMiddleware::ParseXml
 
