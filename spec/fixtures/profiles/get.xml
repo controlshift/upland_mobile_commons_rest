@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response success="true">
+  <profile id="34xxxxxxx">
+    <first_name>John</first_name>
+    <last_name>Doe</last_name>
+    <phone_number>12025551234</phone_number>
+    <email />
+    <status>Active subscriber</status>
+    <created_at>2019-06-21 14:49:40 UTC</created_at>
+    <updated_at>2019-06-21 14:49:40 UTC</updated_at>
+    <opted_out_at />
+    <opted_out_source />
+    <source type="API" name="User1" email="user1@domain.com" />
+    <address>
+      <street1 />
+      <street2 />
+      <city />
+      <state />
+      <postal_code />
+      <country>US</country>
+    </address>
+    <last_saved_location>
+      <latitude>38.906639</latitude>
+      <longitude>-77.016577</longitude>
+      <precision>state</precision>
+      <city />
+      <state>DC</state>
+      <postal_code />
+      <country>US</country>
+    </last_saved_location>
+    <custom_columns>
+      <custom_column name="Age" />
+      <custom_column name="Favorite animal" />
+      <custom_column name="Yes/NO" />
+    </custom_columns>
+    <subscriptions>
+      <subscription campaign_id="162xxx" campaign_name="MC_test2" campaign_description="" opt_in_path_id="" status="Active" opt_in_source="User1" created_at="2019-06-21T14:49:40Z" activated_at="2019-06-22T20:24:36Z" opted_out_at="" opt_out_source="" />
+    </subscriptions>
+    <integrations></integrations>
+    <clicks></clicks>
+  </profile>
+</response>
