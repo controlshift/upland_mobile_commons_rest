@@ -85,6 +85,12 @@ module UplandMobileCommonsRest
     }
 
     def on_complete(response)
+      # First ensure responses without the expected format are correctly handled
+      if response.body.nil? || response.body['response'].nil?
+        raise UnknownError.new(response.inspect)
+      end
+
+      # Now verify that response was successful or raise a corresponding exception otherwise
       if response.body['response']['success'] == 'false'
         raise POSSIBLE_ERRORS[response.body['response']['error']['id']].new(response.body['response']['error']['message'])
       end
