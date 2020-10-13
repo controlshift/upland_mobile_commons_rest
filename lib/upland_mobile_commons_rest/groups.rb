@@ -5,8 +5,23 @@ module UplandMobileCommonsRest
       'groups'
     end
 
-    def list
-      resp = client.get_request(base_path)
+    def list(page: nil, limit: nil)
+      params = []
+
+      if page
+        params << "page=#{url_escape(page)}"
+      end
+
+      if limit
+        params << "limit=#{url_escape(limit)}"
+      end
+
+      request_path = base_path
+      if params.any?
+        request_path += "?#{params.join('&')}"
+      end
+
+      resp = client.get_request(request_path)
       resp.body['response']['groups']['group']
     end
 
