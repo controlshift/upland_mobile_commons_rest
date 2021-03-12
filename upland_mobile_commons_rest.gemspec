@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Nathan Woodhull".freeze]
-  s.date = "2020-10-13"
+  s.date = "2021-03-12"
   s.description = "A simple ruby API client gem for the Upland Mobile Commons REST API".freeze
   s.email = "nathan@controlshiftlabs.com".freeze
   s.extra_rdoc_files = [
@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
     ".travis.yml",
     "CODE_OF_CONDUCT.md",
     "Gemfile",
-    "Gemfile.lock",
     "LICENSE.txt",
     "README.md",
     "Rakefile",
@@ -56,37 +55,25 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/controlshift/upland_mobile_commons_rest".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.0.8".freeze
+  s.rubygems_version = "3.1.2".freeze
   s.summary = "API client gem for Upland Mobile Commons".freeze
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
+  end
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<vertebrae>.freeze, [">= 0"])
-      s.add_development_dependency(%q<shoulda>.freeze, [">= 0"])
-      s.add_development_dependency(%q<rdoc>.freeze, ["> 3.12"])
-      s.add_development_dependency(%q<bundler>.freeze, ["> 2.0"])
-      s.add_development_dependency(%q<juwelier>.freeze, [">= 0"])
-      s.add_development_dependency(%q<simplecov>.freeze, [">= 0"])
-      s.add_development_dependency(%q<dotenv>.freeze, [">= 0"])
-      s.add_development_dependency(%q<byebug>.freeze, [">= 0"])
-      s.add_development_dependency(%q<rubocop>.freeze, [">= 0"])
-      s.add_development_dependency(%q<rspec>.freeze, [">= 0"])
-      s.add_development_dependency(%q<webmock>.freeze, [">= 0"])
-    else
-      s.add_dependency(%q<vertebrae>.freeze, [">= 0"])
-      s.add_dependency(%q<shoulda>.freeze, [">= 0"])
-      s.add_dependency(%q<rdoc>.freeze, ["> 3.12"])
-      s.add_dependency(%q<bundler>.freeze, ["> 2.0"])
-      s.add_dependency(%q<juwelier>.freeze, [">= 0"])
-      s.add_dependency(%q<simplecov>.freeze, [">= 0"])
-      s.add_dependency(%q<dotenv>.freeze, [">= 0"])
-      s.add_dependency(%q<byebug>.freeze, [">= 0"])
-      s.add_dependency(%q<rubocop>.freeze, [">= 0"])
-      s.add_dependency(%q<rspec>.freeze, [">= 0"])
-      s.add_dependency(%q<webmock>.freeze, [">= 0"])
-    end
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<vertebrae>.freeze, [">= 0"])
+    s.add_development_dependency(%q<shoulda>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rdoc>.freeze, ["> 3.12"])
+    s.add_development_dependency(%q<bundler>.freeze, ["> 2.0"])
+    s.add_development_dependency(%q<juwelier>.freeze, [">= 0"])
+    s.add_development_dependency(%q<simplecov>.freeze, [">= 0"])
+    s.add_development_dependency(%q<dotenv>.freeze, [">= 0"])
+    s.add_development_dependency(%q<byebug>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rubocop>.freeze, [">= 0"])
+    s.add_development_dependency(%q<rspec>.freeze, [">= 0"])
+    s.add_development_dependency(%q<webmock>.freeze, [">= 0"])
   else
     s.add_dependency(%q<vertebrae>.freeze, [">= 0"])
     s.add_dependency(%q<shoulda>.freeze, [">= 0"])
