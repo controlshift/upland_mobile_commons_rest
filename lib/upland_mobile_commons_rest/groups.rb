@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module UplandMobileCommonsRest
   class Groups < Base
-
     def base_path
       'groups'
     end
@@ -8,18 +9,12 @@ module UplandMobileCommonsRest
     def list(page: nil, limit: nil)
       params = []
 
-      if page
-        params << "page=#{url_escape(page)}"
-      end
+      params << "page=#{url_escape(page)}" if page
 
-      if limit
-        params << "limit=#{url_escape(limit)}"
-      end
+      params << "limit=#{url_escape(limit)}" if limit
 
       request_path = base_path
-      if params.any?
-        request_path += "?#{params.join('&')}"
-      end
+      request_path += "?#{params.join('&')}" if params.any?
 
       resp = client.get_request(request_path)
       resp.body['response']['groups']['group']

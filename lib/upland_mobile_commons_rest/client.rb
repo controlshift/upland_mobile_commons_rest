@@ -4,7 +4,7 @@ module UplandMobileCommonsRest
   class Client < Vertebrae::API
     attr_accessor :username, :password, :company_key
 
-    def initialize(options={}, &block)
+    def initialize(options = {}, &block)
       self.username = options[:username]
       self.password = options[:password]
       self.company_key = options[:company_key]
@@ -28,7 +28,8 @@ module UplandMobileCommonsRest
         builder.use Faraday::Request::Multipart
         builder.use Faraday::Request::UrlEncoded
         if connection.configuration.authenticated?
-          builder.use Faraday::Request::BasicAuthentication, connection.configuration.username, connection.configuration.password
+          builder.use Faraday::Request::BasicAuthentication, connection.configuration.username,
+                      connection.configuration.password
         end
 
         builder.use UplandMobileCommonsRest::TypedErrorMiddleware

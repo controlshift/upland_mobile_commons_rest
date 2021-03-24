@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe UplandMobileCommonsRest::Profiles do
@@ -16,8 +18,8 @@ describe UplandMobileCommonsRest::Profiles do
 
     describe 'get' do
       before(:each) do
-        stub_upland_mobile_commons_request("profile?phone_number=#{phone_number}", method: :get).
-            to_return(status: 200, body: response_body)
+        stub_upland_mobile_commons_request("profile?phone_number=#{phone_number}", method: :get)
+          .to_return(status: 200, body: response_body)
       end
 
       context 'success' do
@@ -45,8 +47,8 @@ describe UplandMobileCommonsRest::Profiles do
 
     describe 'update' do
       before(:each) do
-        stub_upland_mobile_commons_request('profile_update', method: :post, body: "phone_number=#{phone_number}").
-            to_return(status: 200, body: response_body)
+        stub_upland_mobile_commons_request('profile_update', method: :post, body: "phone_number=#{phone_number}")
+          .to_return(status: 200, body: response_body)
       end
 
       context 'success' do
@@ -62,7 +64,9 @@ describe UplandMobileCommonsRest::Profiles do
         let(:response_body) { fixture('error.xml') }
 
         it 'should raise' do
-          expect { subject.update(phone_number: phone_number) }.to raise_error(UplandMobileCommonsRest::InvalidMessageBody)
+          expect do
+            subject.update(phone_number: phone_number)
+          end.to raise_error(UplandMobileCommonsRest::InvalidMessageBody)
         end
       end
     end

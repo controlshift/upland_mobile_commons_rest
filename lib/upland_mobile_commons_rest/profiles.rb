@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UplandMobileCommonsRest
   class Profiles < Base
     def base_path

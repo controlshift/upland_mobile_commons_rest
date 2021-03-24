@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require 'rubygems'
@@ -6,42 +5,40 @@ require 'bundler'
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
+  warn e.message
+  warn 'Run `bundle install` to install missing gems'
   exit e.status_code
 end
 require 'rake'
 require 'juwelier'
 Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "upland_mobile_commons_rest"
-  gem.homepage = "http://github.com/controlshift/upland_mobile_commons_rest"
-  gem.license = "MIT"
-  gem.summary = %Q{API client gem for Upland Mobile Commons}
-  gem.description = %Q{A simple ruby API client gem for the Upland Mobile Commons REST API}
-  gem.email = "nathan@controlshiftlabs.com"
-  gem.authors = ["Nathan Woodhull"]
+  gem.name = 'upland_mobile_commons_rest'
+  gem.homepage = 'http://github.com/controlshift/upland_mobile_commons_rest'
+  gem.license = 'MIT'
+  gem.summary = %(API client gem for Upland Mobile Commons)
+  gem.description = %(A simple ruby API client gem for the Upland Mobile Commons REST API)
+  gem.email = 'nathan@controlshiftlabs.com'
+  gem.authors = ['Nathan Woodhull']
 
   # dependencies defined in Gemfile
 end
 Juwelier::RubygemsDotOrgTasks.new
 
-desc "Code coverage detail"
+desc 'Code coverage detail'
 task :simplecov do
-  ENV['COVERAGE'] = "true"
+  ENV['COVERAGE'] = 'true'
   Rake::Task['test'].execute
 end
-
 
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 
-
-task :default => :spec
+task default: :spec
 
 require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+  version = File.exist?('VERSION') ? File.read('VERSION') : ''
 
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "upland_mobile_commons_rest #{version}"

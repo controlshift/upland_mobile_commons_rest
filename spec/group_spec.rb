@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe UplandMobileCommonsRest::Groups do
@@ -24,30 +26,35 @@ describe UplandMobileCommonsRest::Groups do
         it 'should return a list of groups' do
           list = subject.list
           expect(list).to be_a(Enumerable)
-          expect(list).to eq([{"id"=>"14", "name"=>"Group One", "size"=>"2", "status"=>"active", "type"=>"FilteredGroup"},
-                              {"id"=>"91", "name"=>"Group Two", "size"=>"1", "status"=>"active", "type"=>"UploadedGroup"}])
+          expect(list).to eq([{ 'id' => '14', 'name' => 'Group One', 'size' => '2', 'status' => 'active', 'type' => 'FilteredGroup' },
+                              { 'id' => '91', 'name' => 'Group Two', 'size' => '1', 'status' => 'active',
+                                'type' => 'UploadedGroup' }])
         end
       end
 
       context 'paginated request' do
         it 'should return a list of groups when both parameters provided' do
-          stub_upland_mobile_commons_request('groups?limit=50&page=35', method: :get).to_return(status: 200, body: response_body)
+          stub_upland_mobile_commons_request('groups?limit=50&page=35', method: :get).to_return(status: 200,
+                                                                                                body: response_body)
 
           list = subject.list(page: 35, limit: 50)
 
           expect(list).to be_a(Enumerable)
-          expect(list).to eq([{"id"=>"14", "name"=>"Group One", "size"=>"2", "status"=>"active", "type"=>"FilteredGroup"},
-                              {"id"=>"91", "name"=>"Group Two", "size"=>"1", "status"=>"active", "type"=>"UploadedGroup"}])
+          expect(list).to eq([{ 'id' => '14', 'name' => 'Group One', 'size' => '2', 'status' => 'active', 'type' => 'FilteredGroup' },
+                              { 'id' => '91', 'name' => 'Group Two', 'size' => '1', 'status' => 'active',
+                                'type' => 'UploadedGroup' }])
         end
 
         it 'should return a list of groups when only limit parameter provided' do
-          stub_upland_mobile_commons_request('groups?limit=50', method: :get).to_return(status: 200, body: response_body)
+          stub_upland_mobile_commons_request('groups?limit=50', method: :get).to_return(status: 200,
+                                                                                        body: response_body)
 
           list = subject.list(limit: 50)
 
           expect(list).to be_a(Enumerable)
-          expect(list).to eq([{"id"=>"14", "name"=>"Group One", "size"=>"2", "status"=>"active", "type"=>"FilteredGroup"},
-                              {"id"=>"91", "name"=>"Group Two", "size"=>"1", "status"=>"active", "type"=>"UploadedGroup"}])
+          expect(list).to eq([{ 'id' => '14', 'name' => 'Group One', 'size' => '2', 'status' => 'active', 'type' => 'FilteredGroup' },
+                              { 'id' => '91', 'name' => 'Group Two', 'size' => '1', 'status' => 'active',
+                                'type' => 'UploadedGroup' }])
         end
 
         it 'should return a list of groups when only page parameter provided' do
@@ -56,8 +63,9 @@ describe UplandMobileCommonsRest::Groups do
           list = subject.list(page: 35)
 
           expect(list).to be_a(Enumerable)
-          expect(list).to eq([{"id"=>"14", "name"=>"Group One", "size"=>"2", "status"=>"active", "type"=>"FilteredGroup"},
-                              {"id"=>"91", "name"=>"Group Two", "size"=>"1", "status"=>"active", "type"=>"UploadedGroup"}])
+          expect(list).to eq([{ 'id' => '14', 'name' => 'Group One', 'size' => '2', 'status' => 'active', 'type' => 'FilteredGroup' },
+                              { 'id' => '91', 'name' => 'Group Two', 'size' => '1', 'status' => 'active',
+                                'type' => 'UploadedGroup' }])
         end
       end
     end
@@ -66,7 +74,9 @@ describe UplandMobileCommonsRest::Groups do
       let(:response_body) { fixture('groups/create.xml') }
 
       before(:each) do
-        stub_upland_mobile_commons_request('create_group?name=Chocolate%20Lovers', method: :get).to_return(status: 200, body: response_body)
+        stub_upland_mobile_commons_request('create_group?name=Chocolate%20Lovers', method: :get).to_return(
+          status: 200, body: response_body
+        )
       end
 
       it 'should return success' do

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module UplandMobileCommonsRest
   class Campaigns < Base
-
     def base_path
       'campaigns'
     end
