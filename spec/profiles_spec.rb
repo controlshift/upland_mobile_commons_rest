@@ -57,6 +57,10 @@ describe UplandMobileCommonsRest::Profiles do
         it 'should succeed' do
           resp = subject.update(phone_number: phone_number)
           expect(resp).to_not be_nil
+
+          expect(resp.body['response']['profile']['id']).to eq('34xxxxxxx')
+          expect(resp.body['response']['profile']['first_name']).to eq('John')
+          expect(resp.body['response']['profile']['last_name']).to eq('John')
         end
       end
 
