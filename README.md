@@ -1,5 +1,5 @@
 # Upland Mobile Commons Ruby Gem
-[![Build Status](https://travis-ci.org/controlshift/upland_mobile_commons_rest.svg?branch=master)](https://travis-ci.org/controlshift/upland_mobile_commons_rest)
+[![CI Status](https://github.com/controlshift/upland_mobile_commons_rest/actions/workflows/ci.yml/badge.svg)](https://github.com/controlshift/upland_mobile_commons_rest/actions/workflows/ci.yml)
 
 A ruby gem for interacting with the Upland Mobile Commons API.
 
