@@ -60,7 +60,7 @@ describe UplandMobileCommonsRest::Profiles do
 
           expect(resp.body['response']['profile']['id']).to eq('34xxxxxxx')
           expect(resp.body['response']['profile']['first_name']).to eq('John')
-          expect(resp.body['response']['profile']['last_name']).to eq('John')
+          expect(resp.body['response']['profile']['last_name']).to eq('Doe')
         end
       end
 
