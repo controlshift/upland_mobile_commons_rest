@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module UplandMobileCommonsRest
+  class NetworkError < StandardError; end
+  class BadGatewayError < NetworkError; end
+  class GatewayTimeoutError < NetworkError; end
+
   class MobileCommonsError < StandardError
     attr_accessor :code, :raw_message
   end
