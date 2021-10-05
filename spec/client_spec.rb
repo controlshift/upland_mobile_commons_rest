@@ -91,6 +91,15 @@ describe UplandMobileCommonsRest::Client do
       end
     end
 
+    context '503 status response' do
+      let(:response_status) { 503 }
+      let(:response_body) { '<html><head><title>503 Internal Server Error</title></head><body><center><h1>503 Internal Server Error</h1></center></body></html>' }
+
+      it 'should raise an UnknownError' do
+        expect{ subject.post_request('do_something', request_params) }.to raise_error(UplandMobileCommonsRest::UnknownError)
+      end
+    end
+
     context '504 status response' do
       let(:response_status) { 504 }
       let(:response_body) { '<html><head><title>504 Gateway Time-out</title></head><body><center><h1>504 Gateway Time-out</h1></center></body></html>' }

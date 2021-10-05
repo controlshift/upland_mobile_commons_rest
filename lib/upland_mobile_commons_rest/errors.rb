@@ -146,6 +146,10 @@ module UplandMobileCommonsRest
         raise BadGatewayError
       when 504
         raise GatewayTimeoutError
+      when 500...600
+        # Just in case we get other 5xx errors, raise something for those
+        # This has not happened that we know of, but better safe than sorry!
+        raise UnknownError, response.inspect
       end
     end
   end
