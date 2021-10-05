@@ -128,12 +128,24 @@ module UplandMobileCommonsRest
     }.freeze
 
     def on_complete(response)
-      # First ensure responses without the expected format are correctly handled
-      raise UnknownError, response.inspect if response.body.nil? || response.body['response'].nil?
+      status_code = response[:status].to_i
 
-      # Now verify that response was successful or raise a corresponding exception otherwise
-      if response.body['response']['success'] == 'false'
-        raise POSSIBLE_ERRORS[response.body['response']['error']['id']], response.body['response']['error']['message']
+      case status_code
+      when 200...500
+        # I'm not sure if responses with error codes have status 200 or 400-499,
+        # so just to be safe, handle all of those.
+
+        # First ensure responses without the expected format are correctly handled
+        raise UnknownError, response.inspect if response.body.nil? || response.body['response'].nil?
+
+        # Now verify that response was successful or raise a corresponding exception otherwise
+        if response.body['response']['success'] == 'false'
+          raise POSSIBLE_ERRORS[response.body['response']['error']['id']], response.body['response']['error']['message']
+        end
+      when 502
+        raise BadGatewayError
+      when 504
+        raise GatewayTimeoutError
       end
     end
   end
