@@ -18,8 +18,8 @@ Juwelier::Tasks.new do |gem|
   gem.license = 'MIT'
   gem.summary = %(API client gem for Upland Mobile Commons)
   gem.description = %(A simple ruby API client gem for the Upland Mobile Commons REST API)
-  gem.email = 'nathan@controlshiftlabs.com'
-  gem.authors = ['Nathan Woodhull']
+  gem.email = 'team@controlshiftlabs.com'
+  gem.authors = ['Kathy Lu', 'Diego Marcet', 'Grey Moore', 'Nathan Woodhull']
 
   # dependencies defined in Gemfile
 end

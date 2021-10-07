@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
-  s.authors = ["Nathan Woodhull".freeze]
-  s.date = "2021-07-23"
+  s.authors = ["Kathy Lu".freeze, "Diego Marcet".freeze, "Grey Moore".freeze, "Nathan Woodhull".freeze]
+  s.date = "2021-10-07"
   s.description = "A simple ruby API client gem for the Upland Mobile Commons REST API".freeze
-  s.email = "nathan@controlshiftlabs.com".freeze
+  s.email = "team@controlshiftlabs.com".freeze
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
