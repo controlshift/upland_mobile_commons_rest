@@ -167,9 +167,6 @@ module UplandMobileCommonsRest
     }.freeze
 
     def on_complete(response)
-      # I'm not sure if responses with error codes have status 200 or 400-499,
-      # so just to be safe, handle all of those.
-
       # First ensure responses without the expected format are correctly handled
       raise UnknownError, response.inspect if response.body.nil? || response.body['response'].nil?
 
