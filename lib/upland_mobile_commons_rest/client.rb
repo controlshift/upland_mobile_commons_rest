@@ -25,6 +25,7 @@ module UplandMobileCommonsRest
 
     def setup
       connection.stack do |builder|
+        # Request middlewares, in the order they should run
         builder.use Faraday::Request::Multipart
         builder.use Faraday::Request::UrlEncoded
         if connection.configuration.authenticated?
@@ -32,9 +33,11 @@ module UplandMobileCommonsRest
                       connection.configuration.password
         end
 
+        # Response middlewares, in the *reverse* order they should run
         builder.use UplandMobileCommonsRest::TypedErrorMiddleware
         builder.use Faraday::Response::Logger if ENV['DEBUG']
         builder.use FaradayMiddleware::ParseXml
+        builder.use UplandMobileCommonsRest::HttpErrorMiddleware
 
         builder.adapter connection.configuration.adapter
       end

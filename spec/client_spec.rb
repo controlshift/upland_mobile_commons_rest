@@ -87,7 +87,12 @@ describe UplandMobileCommonsRest::Client do
       let(:response_body) { '<html><head><title>502 Bad Gateway</title></head><body><center><h1>502 Bad Gateway</h1></center></body></html>' }
 
       it 'should raise an BadGatewayError' do
-        expect{ subject.post_request('do_something', request_params) }.to raise_error(UplandMobileCommonsRest::BadGatewayError)
+        expect do
+          subject.post_request('do_something', request_params)
+        end.to raise_error(UplandMobileCommonsRest::BadGatewayError) do |error|
+          expect(error.body).to eq response_body
+          expect(error.to_s).to include(response_body)
+        end
       end
     end
 
@@ -96,7 +101,11 @@ describe UplandMobileCommonsRest::Client do
       let(:response_body) { '<html><head><title>503 Internal Server Error</title></head><body><center><h1>503 Internal Server Error</h1></center></body></html>' }
 
       it 'should raise an UnknownError' do
-        expect{ subject.post_request('do_something', request_params) }.to raise_error(UplandMobileCommonsRest::UnknownError)
+        expect do
+          subject.post_request('do_something', request_params)
+        end.to raise_error(UplandMobileCommonsRest::UnknownError) do |error|
+          expect(error.to_s).to include(response_body)
+        end
       end
     end
 
@@ -105,7 +114,12 @@ describe UplandMobileCommonsRest::Client do
       let(:response_body) { '<html><head><title>504 Gateway Time-out</title></head><body><center><h1>504 Gateway Time-out</h1></center></body></html>' }
 
       it 'should raise an GatewayTimeoutError' do
-        expect{ subject.post_request('do_something', request_params) }.to raise_error(UplandMobileCommonsRest::GatewayTimeoutError)
+        expect do
+          subject.post_request('do_something', request_params)
+        end.to raise_error(UplandMobileCommonsRest::GatewayTimeoutError) do |error|
+          expect(error.body).to eq response_body
+          expect(error.to_s).to include(response_body)
+        end
       end
     end
   end

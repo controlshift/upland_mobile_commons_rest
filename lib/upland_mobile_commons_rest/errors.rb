@@ -1,9 +1,47 @@
 # frozen_string_literal: true
 
 module UplandMobileCommonsRest
-  class NetworkError < StandardError; end
+  class NetworkError < StandardError
+    attr_accessor :status, :body
+
+    def initialize(params)
+      self.status = params[:status]
+      self.body = params[:body]
+
+      # Including the parentheses means we call #super with no arguments,
+      # rather than passing params along. We do this to avoid the params being
+      # treated as the "message" of the exception.
+      super()
+    end
+
+    def to_s
+      "#{super}\n status: #{status}\n body: #{body}"
+    end
+  end
+
   class BadGatewayError < NetworkError; end
   class GatewayTimeoutError < NetworkError; end
+
+  # This middleware runs *before* XML parsing, so we can include the raw response body in the exception.
+  class HttpErrorMiddleware < Faraday::Response::Middleware
+    def on_complete(response)
+      status_code = response[:status].to_i
+
+      # Raise an exception for 5xx errors.
+      # Q: Shouldn't we also raise for 4xx errors?
+      # A: We let TypedErrorMiddleware handle those, in case they have useful info.
+      case status_code
+      when 502
+        raise BadGatewayError.new(response)
+      when 504
+        raise GatewayTimeoutError.new(response)
+      when 500...600
+        # Just in case we get other 5xx errors, raise something for those
+        # This has not happened that we know of, but better safe than sorry!
+        raise UnknownError, response.inspect
+      end
+    end
+  end
 
   class MobileCommonsError < StandardError
     attr_accessor :code, :raw_message
@@ -85,6 +123,7 @@ module UplandMobileCommonsRest
 
   class MessageHasAlreadyBeenSent < MobileCommonsError; end
 
+  # This middleware runs *after* XML parsing, because it uses information extracted from the body
   class TypedErrorMiddleware < Faraday::Response::Middleware
     POSSIBLE_ERRORS = {
       '0' => UnknownError,
@@ -128,28 +167,15 @@ module UplandMobileCommonsRest
     }.freeze
 
     def on_complete(response)
-      status_code = response[:status].to_i
+      # I'm not sure if responses with error codes have status 200 or 400-499,
+      # so just to be safe, handle all of those.
 
-      case status_code
-      when 200...500
-        # I'm not sure if responses with error codes have status 200 or 400-499,
-        # so just to be safe, handle all of those.
+      # First ensure responses without the expected format are correctly handled
+      raise UnknownError, response.inspect if response.body.nil? || response.body['response'].nil?
 
-        # First ensure responses without the expected format are correctly handled
-        raise UnknownError, response.inspect if response.body.nil? || response.body['response'].nil?
-
-        # Now verify that response was successful or raise a corresponding exception otherwise
-        if response.body['response']['success'] == 'false'
-          raise POSSIBLE_ERRORS[response.body['response']['error']['id']], response.body['response']['error']['message']
-        end
-      when 502
-        raise BadGatewayError
-      when 504
-        raise GatewayTimeoutError
-      when 500...600
-        # Just in case we get other 5xx errors, raise something for those
-        # This has not happened that we know of, but better safe than sorry!
-        raise UnknownError, response.inspect
+      # Now verify that response was successful or raise a corresponding exception otherwise
+      if response.body['response']['success'] == 'false'
+        raise POSSIBLE_ERRORS[response.body['response']['error']['id']], response.body['response']['error']['message']
       end
     end
   end
