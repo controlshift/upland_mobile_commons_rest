@@ -107,6 +107,18 @@ describe UplandMobileCommonsRest::Client do
           expect(error.to_s).to include(response_body)
         end
       end
+
+      context 'with Heavy Load message' do
+        let(:response_body) { "<h2>This website is under heavy load (queue full)</h2><p>We're sorry, too many people are accessing this website at the same time. We're working on this problem. Please try again later.</p>" }
+
+        it 'should raise a HeavyLoadError' do
+          expect do
+            subject.post_request('do_something', request_params)
+          end.to raise_error(UplandMobileCommonsRest::HeavyLoadError) do |error|
+            expect(error.to_s).to include(response_body)
+          end
+        end
+      end
     end
 
     context '504 status response' do
