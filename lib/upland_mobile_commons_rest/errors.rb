@@ -33,6 +33,12 @@ module UplandMobileCommonsRest
       case status_code
       when 502
         raise BadGatewayError.new(response)
+      when 503
+        if /This website is under heavy load/.match?(response.body)
+          raise HeavyLoadError, response.body
+        else
+          raise UnknownError, response.body
+        end
       when 504
         raise GatewayTimeoutError.new(response)
       when 500...600
@@ -46,6 +52,8 @@ module UplandMobileCommonsRest
   class MobileCommonsError < StandardError
     attr_accessor :code, :raw_message
   end
+
+  class HeavyLoadError < MobileCommonsError; end
 
   class UnknownError < MobileCommonsError; end
 
