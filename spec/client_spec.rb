@@ -119,6 +119,18 @@ describe UplandMobileCommonsRest::Client do
           end
         end
       end
+
+      context 'with Site Maintenance message' do
+        let(:response_body) { "<title>Site Maintenance</title><p>Sorry for the inconvenience but we're performing some maintenance at the moment. If you need to you can always <a href=\"mailto:mc_support@uplandsoftware.com\">contact us</a>, otherwise we'll be back online shortly!</p>" }
+
+        it 'should raise a SiteMaintenanceError' do
+          expect do
+            subject.post_request('do_something', request_params)
+          end.to raise_error(UplandMobileCommonsRest::SiteMaintenanceError) do |error|
+            expect(error.to_s).to include(response_body)
+          end
+        end
+      end
     end
 
     context '504 status response' do

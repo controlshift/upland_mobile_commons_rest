@@ -36,6 +36,8 @@ module UplandMobileCommonsRest
       when 503
         if /This website is under heavy load/.match?(response.body)
           raise HeavyLoadError, response.body
+        elsif /Site Maintenance/.match?(response.body)
+          raise SiteMaintenanceError, response.body
         else
           raise UnknownError, response.body
         end
@@ -54,6 +56,8 @@ module UplandMobileCommonsRest
   end
 
   class HeavyLoadError < MobileCommonsError; end
+
+  class SiteMaintenanceError < MobileCommonsError; end
 
   class UnknownError < MobileCommonsError; end
 
