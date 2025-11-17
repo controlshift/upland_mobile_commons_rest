@@ -21,16 +21,19 @@ module UplandMobileCommonsRest
 
   class BadGatewayError < NetworkError; end
   class GatewayTimeoutError < NetworkError; end
+  class UnauthorizedError < NetworkError; end
 
   # This middleware runs *before* XML parsing, so we can include the raw response body in the exception.
   class HttpErrorMiddleware < Faraday::Response::Middleware
     def on_complete(response)
       status_code = response[:status].to_i
 
-      # Raise an exception for 5xx errors.
-      # Q: Shouldn't we also raise for 4xx errors?
+      # Raise an exception for 401 and 5xx errors.
+      # Q: Shouldn't we also raise for the remaining 4xx errors?
       # A: We let TypedErrorMiddleware handle those, in case they have useful info.
       case status_code
+      when 401
+        raise UnauthorizedError.new(response)
       when 502
         raise BadGatewayError.new(response)
       when 503
