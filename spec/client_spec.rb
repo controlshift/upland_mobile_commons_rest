@@ -82,6 +82,20 @@ describe UplandMobileCommonsRest::Client do
       include_examples 'error code parsing'
     end
 
+    context '401 status response' do
+      let(:response_status) { 401 }
+      let(:response_body) { '<html><head><title>401 Unauthorized Error</title></head><body><center><h1>401 Unauthorized Error</h1></center></body></html>' }
+
+      it 'should raise an UnauthorizedError' do
+        expect do
+          subject.post_request('do_something', request_params)
+        end.to raise_error(UplandMobileCommonsRest::UnauthorizedError) do |error|
+          expect(error.body).to eq response_body
+          expect(error.to_s).to include(response_body)
+        end
+      end
+    end
+
     context '502 status response' do
       let(:response_status) { 502 }
       let(:response_body) { '<html><head><title>502 Bad Gateway</title></head><body><center><h1>502 Bad Gateway</h1></center></body></html>' }
