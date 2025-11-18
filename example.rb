@@ -8,7 +8,7 @@ require 'byebug'
 
 Dotenv.load('.env')
 
-client = UplandMobileCommonsRest.new(username: ENV['USERNAME'], password: ENV['PASSWORD']) # rubocop:disable Lint/UselessAssignment
+client = UplandMobileCommonsRest.new(api_key: ENV['API_KEY']) # rubocop:disable Lint/UselessAssignment
 
 puts "Ready to call MobileCommons API using 'client' object"
 byebug # rubocop:disable Lint/Debugger

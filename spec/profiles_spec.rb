@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe UplandMobileCommonsRest::Profiles do
-  let(:client) { UplandMobileCommonsRest::Client.new(username: 'username', password: 'password') }
+  let(:client) { UplandMobileCommonsRest::Client.new(api_key: 'abcde-123456') }
 
   subject { UplandMobileCommonsRest::Profiles.new(client: client) }
 
@@ -12,8 +12,7 @@ describe UplandMobileCommonsRest::Profiles do
   end
 
   context 'with credentials' do
-    let(:username) { 'username' }
-    let(:password) { 'password' }
+    let(:api_key) { 'abcde-123456' }
     let(:phone_number) { '123-256-7890' }
 
     describe 'get' do

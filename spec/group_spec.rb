@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe UplandMobileCommonsRest::Groups do
-  let(:client) { UplandMobileCommonsRest::Client.new(username: 'username', password: 'password') }
+  let(:client) { UplandMobileCommonsRest::Client.new(api_key: 'abcde-123456') }
 
   subject { UplandMobileCommonsRest::Groups.new(client: client) }
 
@@ -12,8 +12,7 @@ describe UplandMobileCommonsRest::Groups do
   end
 
   context 'with credentials' do
-    let(:username) { 'username' }
-    let(:password) { 'password' }
+    let(:api_key) { 'abcde-123456' }
 
     describe 'list' do
       let(:response_body) { fixture('groups/list.xml') }

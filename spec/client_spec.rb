@@ -21,7 +21,7 @@ describe UplandMobileCommonsRest::Client do
   describe 'error handling' do
     let(:request_params) { {example: 'data'} }
 
-    subject { UplandMobileCommonsRest::Client.new(username: 'foo', password: 'bar') }
+    subject { UplandMobileCommonsRest::Client.new(api_key: 'abcde-123456') }
 
     before :each do
       stub_request(:post, 'https://secure.mcommons.com/api/do_something')
