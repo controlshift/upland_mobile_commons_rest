@@ -6,7 +6,7 @@ A ruby gem for interacting with the Upland Mobile Commons API.
 ## Usage
 
 ```ruby
-client = UplandMobileCommonsRest.new(username: 'user', password: 'password')
+client = UplandMobileCommonsRest.new(api_key: 'api-key')
 # List Campaigns
 client.campaigns.list
 
