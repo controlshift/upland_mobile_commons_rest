@@ -24,7 +24,7 @@ module UplandMobileCommonsRest
   class UnauthorizedError < NetworkError; end
 
   # This middleware runs *before* XML parsing, so we can include the raw response body in the exception.
-  class HttpErrorMiddleware < Faraday::Response::Middleware
+  class HttpErrorMiddleware < Faraday::Middleware
     def on_complete(response)
       status_code = response[:status].to_i
 
@@ -139,7 +139,7 @@ module UplandMobileCommonsRest
   class MessageHasAlreadyBeenSent < MobileCommonsError; end
 
   # This middleware runs *after* XML parsing, because it uses information extracted from the body
-  class TypedErrorMiddleware < Faraday::Response::Middleware
+  class TypedErrorMiddleware < Faraday::Middleware
     POSSIBLE_ERRORS = {
       '0' => UnknownError,
       '1' => InvalidCampaignId,
