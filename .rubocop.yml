@@ -1,6 +1,5 @@
 AllCops:
   DisabledByDefault: true
-  TargetRubyVersion: 4.0
 
 Security:
   Enabled: true
