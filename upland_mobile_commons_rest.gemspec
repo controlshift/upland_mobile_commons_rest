@@ -20,23 +20,23 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.metadata['rubygems_mfa_required'] = 'true'
 
-  spec.required_ruby_version = '>= 4.0.0'
+  spec.required_ruby_version = ['>= 3.3', '< 5.0']
 
   # Runtime dependencies
-  spec.add_runtime_dependency 'vertebrae', '>= 1.0.5'
-  spec.add_runtime_dependency 'faraday', '~> 2.14'
-  spec.add_runtime_dependency 'faraday-multipart', '>= 1.0'
-  spec.add_runtime_dependency 'multi_xml', '>= 0.5'
+  spec.add_runtime_dependency 'vertebrae', '~> 1.0'
+  spec.add_runtime_dependency 'faraday', '~> 2.0'
+  spec.add_runtime_dependency 'faraday-multipart', '~> 1.0'
+  spec.add_runtime_dependency 'multi_xml', '~> 0.5'
 
   # Development dependencies
-  spec.add_development_dependency 'bundler', '>= 2.0'
-  spec.add_development_dependency 'byebug'
-  spec.add_development_dependency 'dotenv'
+  spec.add_development_dependency 'bundler', '~> 4.0'
+  spec.add_development_dependency 'byebug', '~> 13.0'
+  spec.add_development_dependency 'dotenv', '~> 3.0'
   spec.add_development_dependency 'rake', '~> 13.0'
-  spec.add_development_dependency 'rdoc', '> 3.12'
+  spec.add_development_dependency 'rdoc', '~> 7.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'shoulda'
-  spec.add_development_dependency 'simplecov'
-  spec.add_development_dependency 'webmock'
+  spec.add_development_dependency 'rubocop', '~> 1.0'
+  spec.add_development_dependency 'shoulda', '~> 4.0'
+  spec.add_development_dependency 'simplecov', '~> 0.22'
+  spec.add_development_dependency 'webmock', '~> 3.0'
 end
