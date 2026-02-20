@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'vertebrae'
+require 'faraday/multipart'
+require 'multi_xml'
 
 module UplandMobileCommonsRest
   extend Vertebrae::Base
@@ -12,6 +14,7 @@ module UplandMobileCommonsRest
   end
 end
 
+require 'upland_mobile_commons_rest/parse_xml_middleware'
 require 'upland_mobile_commons_rest/client'
 require 'upland_mobile_commons_rest/base'
 require 'upland_mobile_commons_rest/campaigns'

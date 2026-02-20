@@ -3,6 +3,11 @@
 
 A ruby gem for interacting with the Upland Mobile Commons API.
 
+## Requirements
+
+- Ruby 3.3, 3.4, or 4.0
+- Faraday ~> 2.0
+
 ## Usage
 
 ```ruby

@@ -22,19 +22,19 @@ module UplandMobileCommonsRest
     end
 
     def setup
-      connection.stack do |builder|
+      connection.faraday_connection = Faraday.new(connection.configuration.faraday_options) do |f|
         # Request middlewares, in the order they should run
-        builder.use Faraday::Request::Multipart
-        builder.use Faraday::Request::UrlEncoded
-        builder.use Faraday::Request::Authorization, 'Bearer', self.api_key
+        f.request :multipart
+        f.request :url_encoded
+        f.request :authorization, 'Bearer', api_key
 
         # Response middlewares, in the *reverse* order they should run
-        builder.use UplandMobileCommonsRest::TypedErrorMiddleware
-        builder.use Faraday::Response::Logger if ENV['DEBUG']
-        builder.use FaradayMiddleware::ParseXml
-        builder.use UplandMobileCommonsRest::HttpErrorMiddleware
+        f.use UplandMobileCommonsRest::TypedErrorMiddleware
+        f.response :logger if ENV['DEBUG']
+        f.use UplandMobileCommonsRest::ParseXmlMiddleware
+        f.use UplandMobileCommonsRest::HttpErrorMiddleware
 
-        builder.adapter connection.configuration.adapter
+        f.adapter connection.configuration.adapter
       end
     end
 
